@@ -4,7 +4,7 @@ var Enemy = function(N) {
     // we've provided one for you to get started
     this.x = 0;
     this.y = 60 * N;
-    this.spriteSpeed = Math.random() * (400 - 100) + 100;
+    this.spriteSpeed = Math.random() * (400 - 100) + 100;       // enemy speed initialization
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -17,7 +17,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.x > 505) {
+    if(this.x > 505) {              // when enemy crosses the screen its x coordinate is made 0 and with a different sprite speed
         this.x = 0;
         this.spriteSpeed = Math.random() * (400 - 100) + 100;
     }
@@ -37,21 +37,21 @@ var Player = function() {
     this.x = 101 * 2;
     this.y = 95 * 4;
 
-    this.health = 3;
-    this.score = 0;
-    this.highestScore = 0;
+    this.health = 3;        // keeps track of player life
+    this.score = 0;         // keeps track of score
+    this.highestScore = 0;  // keeps track of highest score
 }
 
 Player.prototype.update = function() {
-    if(this.y <= 0) {
+    if(this.y <= 0) {       // this condition is met when player reaches to the river
         this.reset();
         this.score = this.score + 1;
     }
-    document.getElementById("score").innerHTML = this.score;
-    document.getElementById("highest").innerHTML = this.highestScore;
+    document.getElementById("score").innerHTML = this.score;            // score updated in UI
+    document.getElementById("highest").innerHTML = this.highestScore;   // highest score updated in UI
 }
 
-Player.prototype.reset = function() {
+Player.prototype.reset = function() {       // function to reset the position of player
     this.x = 101 * 2;
     this.y = 95 * 4;
 }
@@ -81,7 +81,7 @@ Player.prototype.handleInput = function(dir) {
     }
 }
 
-Player.prototype.removeHeart = function() {
+Player.prototype.removeHeart = function() {     // remove 1 heart when player collides with enemy
     var img = document.getElementById('heart' + this.health);
     document.body.removeChild(img);
 }

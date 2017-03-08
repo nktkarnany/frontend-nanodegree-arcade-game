@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <div id="main">
+        <div id="canvasDiv">
+            <canvas id="canvas" width="505" height="606"></canvas>
+        </div>
+        <div id="scopeDiv">
+            <span>Your Score - </span><span id="score"></span><br/>
+            <span>Highest Score - </span><span id="highest"></span><br/>
+            <img src="images/Heart.png" id="heart0">
+            <img src="images/Heart.png" id="heart1">
+            <img src="images/Heart.png" id="heart2">
+        </div>
+    </div>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
-    <br/>
-    <span>Your Score - </span><span id="score"></span>
-    <br/>
-    <span>Highest Score - </span><span id="highest"></span>
-    <br/>
 </body>
+
 </html>

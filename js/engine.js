@@ -21,13 +21,13 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
-        canvas = doc.createElement('canvas'),
+        canvas = doc.getElementById('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
-    doc.body.appendChild(canvas);
+//    canvas.width = 505;
+//    canvas.height = 606;
+//    doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -84,29 +84,29 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
-        var collided = false;
+        var collided = false;           // initial flag for collision set to false
         allEnemies.forEach(function(enemy) {
             if(player.y >= 0 && player.y <= 60 && enemy.y == 60) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    collided = true;
+                    collided = true;        // when player hits the first enemy
             } else if (player.y >= 60 && player.y <= 144 && enemy.y == 144) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    collided = true;
+                    collided = true;        // when player hits the second enemy
             } else if (player.y >= 144 && player.y <= 228 && enemy.y == 228) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    collided = true;
+                    collided = true;        // when player hits the third enemy
             }
         });
 
         if(collided) {
-            player.reset();
-            player.health--;
-            player.removeHeart();
+            player.reset();     // on collision player is resetted
+            player.health--;    // health reduced by 1
+            player.removeHeart(); // and 1 heart is removed from UI
         }
 
-        if(player.health == 0){
+        if(player.health == 0){     // player health 0 means that he has no more life left
             if(player.score > player.highestScore)
-                player.highestScore = player.score;
+                player.highestScore = player.score;     // updating the highest score
             reset();
         }
     }
@@ -189,13 +189,7 @@ var Engine = (function(global) {
     function reset() {
         // noop
         player.score = 0;
-        player.health = 3;
-        for(var i = 0; i < player.health; i++){
-            var img = document.createElement('img');
-            img.src = 'images/Heart.png';
-            img.setAttribute('id', 'heart' + i);
-            document.body.appendChild(img);
-        }
+        player.health = 3;      // on game reset player gets 3 lives
     }
 
     /* Go ahead and load all of the images we know we're going to need to

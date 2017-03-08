@@ -5,3 +5,17 @@ body {
 span {
     font-size: 45px;
 }
+
+#main {
+    display:inline-flex;
+}
+
+#canvasDiv {
+    width:50vh;
+}
+
+#scopeDiv {
+    width:50vh;
+    padding-left:200px;
+    padding-top:150px;
+}
