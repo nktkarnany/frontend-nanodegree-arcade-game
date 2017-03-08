@@ -5,6 +5,7 @@ var Enemy = function(N) {
 
     this.x = 0;
     this.y = 60 * N;
+    console.log(this.y);
     this.spriteSpeed = Math.random() * (400 - 100) + 100;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -39,7 +40,14 @@ var Player = function() {
 }
 
 Player.prototype.update = function() {
+    if(this.y <= 0) {
+        this.reset();
+    }
+}
 
+Player.prototype.reset = function() {
+    this.x = 101 * 2;
+    this.y = 95 * 4;
 }
 
 Player.prototype.render = function() {
@@ -72,7 +80,7 @@ var player = new Player();
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(1), new Enemy(2.5), new Enemy(4)];
+var allEnemies = [new Enemy(1), new Enemy(2.4), new Enemy(3.8)];
 
 
 // This listens for key presses and sends the keys to your

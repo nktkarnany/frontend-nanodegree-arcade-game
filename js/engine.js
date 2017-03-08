@@ -80,7 +80,22 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+            if(player.y >= 0 && player.y <= 60 && enemy.y == 60) {
+                if(Math.abs(player.x - enemy.x) <= 80)
+                    player.reset();
+            } else if (player.y >= 60 && player.y <= 144 && enemy.y == 144) {
+                if(Math.abs(player.x - enemy.x) <= 80)
+                    player.reset();
+            } else if (player.y >= 144 && player.y <= 228 && enemy.y == 228) {
+                if(Math.abs(player.x - enemy.x) <= 80)
+                    player.reset();
+            }
+        });
     }
 
     /* This is called by the update function and loops through all of the
