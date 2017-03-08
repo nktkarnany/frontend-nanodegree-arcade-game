@@ -1,6 +1,11 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## How to run the application - 
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+* When you open this page in browser, you will see fews vehicles moving from left to right at random speeds.
+* You need to cross the path without hitting the vehicle.
+* On reaching to the river you get resetted back to original position and your score gets incremented by 1.
+* If you hit the enemy then you get resetted and lose one life.
+* If you lose all the lives then the game gets resetted and the final score is compared with the high score.
+* If your score is more than the high score then the high score is replaced with your score.
