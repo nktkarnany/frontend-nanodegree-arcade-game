@@ -5,6 +5,7 @@ var Enemy = function(N) {
 
     this.x = 0;
     this.y = 60 * N;
+    this.spriteSpeed = Math.random() * (400 - 100) + 100;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -16,9 +17,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.x > 505)
+    if(this.x > 505) {
         this.x = 0;
-    this.x = this.x + (Math.random() * (500 - 50) + 50) * dt;
+        this.spriteSpeed = Math.random() * (400 - 100) + 100;
+    }
+    this.x = this.x + this.spriteSpeed * dt;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -59,7 +62,7 @@ Player.prototype.handleInput = function(dir) {
             break;
         case 'down':
             if(this.y < 95 * 4)
-            this.y = this.y + 83;
+                this.y = this.y + 83;
             break;
     }
 }
