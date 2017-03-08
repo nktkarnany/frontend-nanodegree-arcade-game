@@ -84,18 +84,31 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
+        var collided = false;
         allEnemies.forEach(function(enemy) {
             if(player.y >= 0 && player.y <= 60 && enemy.y == 60) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    player.reset();
+                    collided = true;
             } else if (player.y >= 60 && player.y <= 144 && enemy.y == 144) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    player.reset();
+                    collided = true;
             } else if (player.y >= 144 && player.y <= 228 && enemy.y == 228) {
                 if(Math.abs(player.x - enemy.x) <= 80)
-                    player.reset();
+                    collided = true;
             }
         });
+
+        if(collided) {
+            player.reset();
+            player.health--;
+            player.removeHeart();
+        }
+
+        if(player.health == 0){
+            if(player.score > player.highestScore)
+                player.highestScore = player.score;
+            reset();
+        }
     }
 
     /* This is called by the update function and loops through all of the
@@ -175,6 +188,14 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player.score = 0;
+        player.health = 3;
+        for(var i = 0; i < player.health; i++){
+            var img = document.createElement('img');
+            img.src = 'images/Heart.png';
+            img.setAttribute('id', 'heart' + i);
+            document.body.appendChild(img);
+        }
     }
 
     /* Go ahead and load all of the images we know we're going to need to

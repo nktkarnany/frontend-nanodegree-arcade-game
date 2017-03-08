@@ -2,11 +2,10 @@
 var Enemy = function(N) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
     this.x = 0;
     this.y = 60 * N;
-    console.log(this.y);
     this.spriteSpeed = Math.random() * (400 - 100) + 100;
+
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -37,12 +36,19 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 101 * 2;
     this.y = 95 * 4;
+
+    this.health = 3;
+    this.score = 0;
+    this.highestScore = 0;
 }
 
 Player.prototype.update = function() {
     if(this.y <= 0) {
         this.reset();
+        this.score = this.score + 1;
     }
+    document.getElementById("score").innerHTML = this.score;
+    document.getElementById("highest").innerHTML = this.highestScore;
 }
 
 Player.prototype.reset = function() {
@@ -73,6 +79,11 @@ Player.prototype.handleInput = function(dir) {
                 this.y = this.y + 83;
             break;
     }
+}
+
+Player.prototype.removeHeart = function() {
+    var img = document.getElementById('heart' + this.health);
+    document.body.removeChild(img);
 }
 
 var player = new Player();
