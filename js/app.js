@@ -82,8 +82,9 @@ Player.prototype.handleInput = function(dir) {
 }
 
 Player.prototype.removeHeart = function() {     // remove 1 heart when player collides with enemy
+    var parent = document.getElementById('scopeDiv');
     var img = document.getElementById('heart' + this.health);
-    document.body.removeChild(img);
+    parent.removeChild(img);
 }
 
 var player = new Player();

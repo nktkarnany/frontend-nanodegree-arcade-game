@@ -190,6 +190,13 @@ var Engine = (function(global) {
         // noop
         player.score = 0;
         player.health = 3;      // on game reset player gets 3 lives
+        for(var i = 0; i < player.health; i++) {
+            var parent = doc.getElementById('scopeDiv');
+            var img = doc.createElement('img');
+            img.src = 'images/Heart.png';
+            img.setAttribute('id', 'heart' + i);
+            parent.appendChild(img);
+        }
     }
 
     /* Go ahead and load all of the images we know we're going to need to
