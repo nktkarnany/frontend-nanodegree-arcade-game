@@ -1,3 +1,5 @@
+var TILE_WIDTH = 101, TILE_HEIGHT = 83;
+
 // Enemies our player must avoid
 var Enemy = function(N) {
     // Variables applied to each of our instances go here,
@@ -17,7 +19,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.x > 505) {              // when enemy crosses the screen its x coordinate is made 0 and with a different sprite speed
+    if(this.x > TILE_WIDTH * 5) {              // when enemy crosses the screen its x coordinate is made 0 and with a different sprite speed
         this.x = 0;
         this.spriteSpeed = Math.random() * (400 - 100) + 100;
     }
@@ -34,13 +36,13 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
-    this.x = 101 * 2;
+    this.x = TILE_WIDTH * 2;
     this.y = 95 * 4;
 
     this.health = 3;        // keeps track of player life
     this.score = 0;         // keeps track of score
     this.highestScore = 0;  // keeps track of highest score
-}
+};
 
 Player.prototype.update = function() {
     if(this.y <= 0) {       // this condition is met when player reaches to the river
@@ -49,43 +51,43 @@ Player.prototype.update = function() {
     }
     document.getElementById("score").innerHTML = this.score;            // score updated in UI
     document.getElementById("highest").innerHTML = this.highestScore;   // highest score updated in UI
-}
+};
 
 Player.prototype.reset = function() {       // function to reset the position of player
-    this.x = 101 * 2;
+    this.x = TILE_WIDTH * 2;
     this.y = 95 * 4;
-}
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function(dir) {
     switch(dir){
         case 'left':
             if(this.x > 0)
-                this.x = this.x - 101;
+                this.x = this.x - TILE_WIDTH;
             break;
         case 'right':
-            if(this.x < 404)
-                this.x = this.x + 101;
+            if(this.x < TILE_WIDTH * 4)
+                this.x = this.x + TILE_WIDTH;
             break;
         case 'up':
             if(this.y > 0)
-                this.y = this.y - 83;
+                this.y = this.y - TILE_HEIGHT;
             break;
         case 'down':
             if(this.y < 95 * 4)
-                this.y = this.y + 83;
+                this.y = this.y + TILE_HEIGHT;
             break;
     }
-}
+};
 
 Player.prototype.removeHeart = function() {     // remove 1 heart when player collides with enemy
     var parent = document.getElementById('scopeDiv');
     var img = document.getElementById('heart' + this.health);
     parent.removeChild(img);
-}
+};
 
 var player = new Player();
 
